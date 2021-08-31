@@ -47,6 +47,10 @@ class FavouriteItemsFragment(private val viewModel: HomeViewModel) : Fragment() 
         binding.fragFavItemsRecyclerView.adapter = recyclerViewAdapter
         binding.fragFavItemsRecyclerView.setHasFixedSize(true)
         binding.fragFavItemsRecyclerView.layoutManager = layoutManager
+
+        binding.fragFavRefreshLayout.setOnRefreshListener {
+            viewModel.getStarships()
+        }
     }
 
     private fun observe() {
@@ -76,10 +80,12 @@ class FavouriteItemsFragment(private val viewModel: HomeViewModel) : Fragment() 
     }
 
     private fun handleSuccessResponse(starships : List<StarshipEntity>){
+        binding.fragFavRefreshLayout.isRefreshing = false
         recyclerViewAdapter.setStarshipList(starships)
     }
 
     private fun handleErrorResponse(){
+        binding.fragFavRefreshLayout.isRefreshing = false
         Toast.makeText(binding.root.context,getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
     }
 }

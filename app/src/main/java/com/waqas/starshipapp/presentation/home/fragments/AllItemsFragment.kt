@@ -48,6 +48,10 @@ class AllItemsFragment(private val viewModel: HomeViewModel) : Fragment() {
         binding.fragAllItemsRecyclerView.adapter = recyclerViewAdapter
         binding.fragAllItemsRecyclerView.setHasFixedSize(true)
         binding.fragAllItemsRecyclerView.layoutManager = layoutManager
+
+        binding.fragAllRefreshLayout.setOnRefreshListener {
+            viewModel.getStarships()
+        }
     }
 
     private fun observe() {
@@ -77,10 +81,12 @@ class AllItemsFragment(private val viewModel: HomeViewModel) : Fragment() {
     }
 
     private fun handleSuccessResponse(starships : List<StarshipEntity>){
+        binding.fragAllRefreshLayout.isRefreshing = false
         recyclerViewAdapter.setStarshipList(starships)
     }
 
     private fun handleErrorResponse(){
+        binding.fragAllRefreshLayout.isRefreshing = false
         Toast.makeText(binding.root.context,getString(R.string.generic_error), Toast.LENGTH_SHORT).show()
     }
 }
