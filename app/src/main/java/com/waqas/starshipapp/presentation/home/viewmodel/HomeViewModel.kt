@@ -60,9 +60,9 @@ class HomeViewModel @Inject constructor(private val getStarshipsUseCase: GetStar
         }
     }
 
-    fun setFavourite(index: Int, set: Boolean){
+    fun setFavourite(name: String, set: Boolean){
         viewModelScope.launch {
-            setFavoriteUseCase.invoke(index,set)
+            setFavoriteUseCase.invoke(name,set)
                 .onStart {
                     setLoading()
                 }

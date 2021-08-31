@@ -40,7 +40,7 @@ RecyclerView.Adapter<RecyclerViewAdapter.ListViewHolder>(){
         setFavouriteBtnUI(holder,currentItem)
 
         holder.favouriteBtn.setOnClickListener {
-            viewModel.setFavourite(position,!currentItem.isFavourite)
+            viewModel.setFavourite(currentItem.name,!currentItem.isFavourite)
             setStarshipList(viewModel.getUpdatedList())
             if(!currentItem.isFavourite){
                 Toast.makeText(context,context.getString(R.string.item_removed), Toast.LENGTH_SHORT).show()

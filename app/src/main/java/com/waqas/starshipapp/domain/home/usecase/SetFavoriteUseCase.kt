@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class SetFavoriteUseCase @Inject constructor(private val homeRepository: HomeRepository) {
-    suspend fun invoke(index: Int, set: Boolean): Flow<BaseResult<List<StarshipEntity>, WrappedListResponse<StarshipResponse>>> {
-        return homeRepository.setFavourite(index,set)
+    suspend fun invoke(name: String, set: Boolean): Flow<BaseResult<List<StarshipEntity>, WrappedListResponse<StarshipResponse>>> {
+        return homeRepository.setFavourite(name,set)
     }
 }

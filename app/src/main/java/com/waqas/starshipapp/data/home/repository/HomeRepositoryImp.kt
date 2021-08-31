@@ -59,13 +59,13 @@ class HomeRepositoryImp @Inject constructor(private val getStarshipsApi: GetStar
     }
 
     override suspend fun setFavourite(
-        index: Int,
+        name: String,
         set: Boolean
     ): Flow<BaseResult<List<StarshipEntity>, WrappedListResponse<StarshipResponse>>> {
         return flow {
-            for(i in allStarships.indices){
-                if(index == i){
-                    allStarships[i].isFavourite = set
+            allStarships.forEach{
+                if(it.name == name){
+                    it.isFavourite = set
                 }
             }
             emit(BaseResult.Success(allStarships))

@@ -9,6 +9,6 @@ import kotlinx.coroutines.flow.Flow
 interface HomeRepository {
     var allStarships: List<StarshipEntity>
     suspend fun getStarships(): Flow<BaseResult<List<StarshipEntity>, WrappedListResponse<StarshipResponse>>>
-    suspend fun setFavourite(index: Int, set: Boolean): Flow<BaseResult<List<StarshipEntity>, WrappedListResponse<StarshipResponse>>>
+    suspend fun setFavourite(name: String, set: Boolean): Flow<BaseResult<List<StarshipEntity>, WrappedListResponse<StarshipResponse>>>
     fun getUpdatedList(): List<StarshipEntity>
 }
