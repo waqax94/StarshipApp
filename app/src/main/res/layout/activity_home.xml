@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:fitsSystemWindows="true"
+    tools:context=".presentation.home.HomeActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/home_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_500"
+        app:title="@string/starships"
+        app:titleTextColor="@color/white"/>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/home_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/home_toolbar"
+        android:layout_above="@id/home_tab_layout"
+        />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/home_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/light_grey"
+        />
+
+</RelativeLayout>

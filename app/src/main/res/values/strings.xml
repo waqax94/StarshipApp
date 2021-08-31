@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Starship App</string>
+    <string name="starships">Starships</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_fragment_title">All Items</string>
+    <string name="favourite_fragment_title">Favourites</string>
+    <string name="generic_error">Error in retrieving data</string>
+    <string name="item_removed">Item removed from favourites</string>
+    <string name="item_added">Item added to favourites</string>
+</resources>

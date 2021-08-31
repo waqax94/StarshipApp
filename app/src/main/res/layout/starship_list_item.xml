@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:layout_margin="@dimen/margin_small"
+    android:clipToPadding="true"
+    android:padding="@dimen/padding_small"
+    android:background="@drawable/list_item_bg">
+
+    <ImageView
+        android:id="@+id/list_item_icon"
+        android:layout_width="@dimen/image_view_size"
+        android:layout_height="@dimen/image_view_size"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:padding="@dimen/padding_small"
+        android:src="@drawable/star_ship_white"
+        android:layout_centerVertical="true"
+        android:background="@drawable/image_view_bg"/>
+
+    <RelativeLayout
+        android:id="@+id/item_name_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/item_favorite_btn"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/list_item_icon">
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:autoSizeMaxTextSize="@dimen/text_size_medium"
+            android:autoSizeTextType="uniform"
+            android:lines="1"
+            android:text="Sentinel-class landing craft"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_medium" />
+
+        <TextView
+            android:id="@+id/list_item_class"
+            android:layout_width="match_parent"
+            android:text="landing craft"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_name"
+            android:autoSizeMaxTextSize="@dimen/text_size_small"
+            android:autoSizeTextType="uniform"
+            android:textColor="@color/dark_grey"
+            android:lines="1"
+            android:textSize="@dimen/text_size_small" />
+
+    </RelativeLayout>
+
+
+    <ImageButton
+        android:id="@+id/item_favorite_btn"
+        android:layout_width="@dimen/list_btn_size"
+        android:layout_height="@dimen/list_btn_size"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/star_empty"/>
+
+</RelativeLayout>
