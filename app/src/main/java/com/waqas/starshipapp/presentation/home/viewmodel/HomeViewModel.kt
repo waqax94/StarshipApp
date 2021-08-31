@@ -8,6 +8,7 @@ import com.waqas.starshipapp.data.home.remote.dto.StarshipResponse
 import com.waqas.starshipapp.domain.base.BaseResult
 import com.waqas.starshipapp.domain.home.entity.StarshipEntity
 import com.waqas.starshipapp.domain.home.usecase.GetStarshipsUseCase
+import com.waqas.starshipapp.domain.home.usecase.GetUpdatedListUseCase
 import com.waqas.starshipapp.domain.home.usecase.SetFavoriteUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val getStarshipsUseCase: GetStarshipsUseCase, private val setFavoriteUseCase: SetFavoriteUseCase): ViewModel() {
+class HomeViewModel @Inject constructor(private val getStarshipsUseCase: GetStarshipsUseCase, private val setFavoriteUseCase: SetFavoriteUseCase, private val getUpdatedListUseCase: GetUpdatedListUseCase): ViewModel() {
     private val state = MutableStateFlow<HomeActivityState>(HomeActivityState.Init)
     val mState : StateFlow<HomeActivityState> get() = state
 
@@ -72,6 +73,10 @@ class HomeViewModel @Inject constructor(private val getStarshipsUseCase: GetStar
                     }
                 }
         }
+    }
+
+    fun getUpdatedList(): List<StarshipEntity>{
+        return getUpdatedListUseCase.invoke()
     }
 
 }

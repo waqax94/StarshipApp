@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class HomeRepositoryImp @Inject constructor(private val getStarshipsApi: GetStarshipsApi,
 ) : HomeRepository {
-    override lateinit var allStarships: List<StarshipEntity>
+    override var allStarships: List<StarshipEntity> = ArrayList()
     override suspend fun getStarships(): Flow<BaseResult<List<StarshipEntity>, WrappedListResponse<StarshipResponse>>> {
         return flow {
             val response = getStarshipsApi.getStarships()
@@ -70,6 +70,10 @@ class HomeRepositoryImp @Inject constructor(private val getStarshipsApi: GetStar
             }
             emit(BaseResult.Success(allStarships))
         }
+    }
+
+    override fun getUpdatedList(): List<StarshipEntity> {
+        return allStarships
     }
 
 }

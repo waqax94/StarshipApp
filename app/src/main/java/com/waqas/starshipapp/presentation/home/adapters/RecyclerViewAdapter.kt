@@ -1,6 +1,7 @@
 package com.waqas.starshipapp.presentation.home.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,7 @@ import com.waqas.starshipapp.R
 import com.waqas.starshipapp.domain.home.entity.StarshipEntity
 import com.waqas.starshipapp.presentation.home.viewmodel.HomeViewModel
 
-class RecyclerViewAdapter(private val context: Context, private val viewModel: HomeViewModel) :
+class RecyclerViewAdapter(private val context: Context, private val viewModel: HomeViewModel, private val favourites: Boolean) :
 RecyclerView.Adapter<RecyclerViewAdapter.ListViewHolder>(){
 
     private var starships: List<StarshipEntity> = ArrayList()
@@ -40,13 +41,13 @@ RecyclerView.Adapter<RecyclerViewAdapter.ListViewHolder>(){
 
         holder.favouriteBtn.setOnClickListener {
             viewModel.setFavourite(position,!currentItem.isFavourite)
+            setStarshipList(viewModel.getUpdatedList())
             if(!currentItem.isFavourite){
                 Toast.makeText(context,context.getString(R.string.item_removed), Toast.LENGTH_SHORT).show()
             }
             else{
                 Toast.makeText(context,context.getString(R.string.item_added), Toast.LENGTH_SHORT).show()
             }
-            notifyDataSetChanged()
         }
 
 
@@ -57,7 +58,19 @@ RecyclerView.Adapter<RecyclerViewAdapter.ListViewHolder>(){
     }
 
     fun setStarshipList(list: List<StarshipEntity>){
-        this.starships = list
+        this.starships = ArrayList()
+        val favs = mutableListOf<StarshipEntity>()
+        if(favourites){
+            list.forEach{
+                if(it.isFavourite){
+                    favs.add(it)
+                }
+            }
+            this.starships = favs
+        }
+        else{
+            this.starships = list
+        }
         notifyDataSetChanged()
     }
 

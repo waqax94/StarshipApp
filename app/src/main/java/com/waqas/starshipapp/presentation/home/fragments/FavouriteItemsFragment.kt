@@ -1,6 +1,7 @@
 package com.waqas.starshipapp.presentation.home.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -35,8 +36,13 @@ class FavouriteItemsFragment(private val viewModel: HomeViewModel) : Fragment() 
         return binding.root
     }
 
+    override fun onResume() {
+        recyclerViewAdapter.setStarshipList(viewModel.getUpdatedList())
+        super.onResume()
+    }
+
     private fun initRecyclerView(){
-        recyclerViewAdapter = RecyclerViewAdapter(binding.root.context,viewModel)
+        recyclerViewAdapter = RecyclerViewAdapter(binding.root.context,viewModel,true)
         val layoutManager = LinearLayoutManager(binding.root.context)
         binding.fragFavItemsRecyclerView.adapter = recyclerViewAdapter
         binding.fragFavItemsRecyclerView.setHasFixedSize(true)
@@ -70,13 +76,7 @@ class FavouriteItemsFragment(private val viewModel: HomeViewModel) : Fragment() 
     }
 
     private fun handleSuccessResponse(starships : List<StarshipEntity>){
-        val favStarships = mutableListOf<StarshipEntity>()
-        starships.forEach{
-            if(it.isFavourite){
-                favStarships.add(it)
-            }
-        }
-        recyclerViewAdapter.setStarshipList(favStarships)
+        recyclerViewAdapter.setStarshipList(starships)
     }
 
     private fun handleErrorResponse(){

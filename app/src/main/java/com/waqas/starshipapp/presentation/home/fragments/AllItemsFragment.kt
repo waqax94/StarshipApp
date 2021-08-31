@@ -37,8 +37,13 @@ class AllItemsFragment(private val viewModel: HomeViewModel) : Fragment() {
         return binding.root
     }
 
+    override fun onResume() {
+        recyclerViewAdapter.setStarshipList(viewModel.getUpdatedList())
+        super.onResume()
+    }
+
     private fun initRecyclerView(){
-        recyclerViewAdapter = RecyclerViewAdapter(binding.root.context,viewModel)
+        recyclerViewAdapter = RecyclerViewAdapter(binding.root.context,viewModel,false)
         val layoutManager = LinearLayoutManager(binding.root.context)
         binding.fragAllItemsRecyclerView.adapter = recyclerViewAdapter
         binding.fragAllItemsRecyclerView.setHasFixedSize(true)
